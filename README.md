@@ -25,4 +25,10 @@ Styleguide
 #21ce99
 #ffffff
 
+font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif (Air BnB)
+
+font-family: Aspira-Bold,Helvetica,Arial,Sans-serif (Chegg.com)
+
+Button pill style
+
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
