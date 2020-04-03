@@ -19,4 +19,10 @@ $ npm run start
 $ npm run generate
 ```
 
+Styleguide 
+
+#333333 
+#21ce99
+#ffffff
+
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
