@@ -22,7 +22,7 @@ $ npm run generate
 Styleguide 
 
 #333333 
-#21ce99
+21ce99
 #ffffff
 
 font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif (Air BnB)

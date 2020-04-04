@@ -5,7 +5,15 @@
 ** Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
 */
 module.exports = {
-  theme: {},
-  variants: {},
+  theme: {
+    extend: {
+      colors: {
+        primary: '#21ce99',
+        anthrazit: '#333333'
+      }
+    }
+  },
+  variants: {
+  },
   plugins: []
 }
