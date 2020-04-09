@@ -18,7 +18,7 @@ export default {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#21ce99' },
   /*
   ** Global CSS
   */
@@ -40,15 +40,27 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxtjs/axios',
+    '@nuxtjs/apollo',
+    '@nuxtjs/auth'
   ],
-  /*
-  ** Axios module configuration
-  ** See https://axios.nuxtjs.org/options
-  */
-  axios: {
+  auth: {
+    strategies: {
+      local: false,
+      auth0: {
+        domain: 'dev-y9r4orc7.eu.auth0.com',
+        client_id: 'fkc1QGnc1Ze0LELobaIU9WKszo06B3j3',
+        audience: 'https://unicircle-graphql'
+      }
+    }
+  },
+  apollo: {
+    includeNodeModules: true,
+    errorHandler: '~/apollo/client-configs/apollo-error-handler.js',
+    clientConfigs: {
+      default: '~/apollo/client-configs/default.js'
+    }
   },
   /*
   ** Build configuration

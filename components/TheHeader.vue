@@ -32,20 +32,14 @@
         </div>
         <div class="flex lg:px-6 hidden md:inline-flex">
 
-          <div class="text-anthrazit hover:text-white font-bold">
-            <a href="#" class="whitespace-no-wrap  rounded-full block hover:bg-primary px-4 py-2">
+          <div class="text-anthrazit font-bold">
+            <a href="#" class="whitespace-no-wrap hover:text-white rounded-full block hover:bg-primary px-4 py-2">
               Über uns
             </a>
           </div>
 
-          <div class="text-anthrazit hover:text-white font-bold">
-            <a href="#" class="rounded-full block hover:bg-primary px-4 py-2 lg:ml-2">
-              Registrieren
-            </a>
-          </div>
-
           <div class="text-anthrazit font-bold">
-            <a href="#" class="rounded-full shadow block hover:bg-primary px-4 py-2 lg:ml-3">
+            <a @click="login()" href="#" class="rounded-full shadow block hover:bg-primary px-4 py-2 lg:ml-3">
               Einloggen
             </a>
           </div>
@@ -103,6 +97,9 @@
               // user is at top of page
               if(!this.view.atTopOfPage) this.view.atTopOfPage = true
             }
+          },
+          login() {
+            this.$auth.loginWith('auth0');
           }
         }
     }
