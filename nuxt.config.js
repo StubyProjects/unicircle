@@ -1,4 +1,3 @@
-
 export default {
   mode: 'universal',
   /*
@@ -42,24 +41,23 @@ export default {
   modules: [
     '@nuxtjs/pwa',
     '@nuxtjs/axios',
-    '@nuxtjs/apollo',
     '@nuxtjs/auth'
   ],
+  axios: {
+    baseURL: 'http://localhost:8000'
+  },
   auth: {
+    redirect: {
+      login: '/', // redirect user when not connected
+      callback: '/auth/login'
+    },
     strategies: {
-      local: false,
+      local:false,
       auth0: {
         domain: 'dev-y9r4orc7.eu.auth0.com',
         client_id: 'fkc1QGnc1Ze0LELobaIU9WKszo06B3j3',
         audience: 'https://unicircle-graphql'
       }
-    }
-  },
-  apollo: {
-    includeNodeModules: true,
-    errorHandler: '~/apollo/client-configs/apollo-error-handler.js',
-    clientConfigs: {
-      default: '~/apollo/client-configs/default.js'
     }
   },
   /*

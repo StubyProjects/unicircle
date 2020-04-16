@@ -38,8 +38,15 @@
             </a>
           </div>
 
+          <div v-if="$auth.loggedIn" class="text-anthrazit font-bold">
+            <nuxt-link to="/catalog/newlisting" class="whitespace-no-wrap hover:text-white rounded-full block hover:bg-primary px-4 py-2">Jetzt verkaufen</nuxt-link>
+          </div>
+
           <div class="text-anthrazit font-bold">
-            <a @click="login()" href="#" class="rounded-full shadow block hover:bg-primary px-4 py-2 lg:ml-3">
+            <a v-if="$auth.loggedIn" @click="$auth.logout()" href="#" class="rounded-full shadow block hover:bg-primary px-4 py-2 lg:ml-3">
+              Ausloggen
+            </a>
+            <a v-else @click="login()" href="#" class="rounded-full shadow block hover:bg-primary px-4 py-2 lg:ml-3">
               Einloggen
             </a>
           </div>
