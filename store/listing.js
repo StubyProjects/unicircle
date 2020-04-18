@@ -1,10 +1,14 @@
 export const state = () => ({
-  searchResults: []
+  searchResults: [],
+  selectedProduct: {}
 })
 
 export const getters = {
   getSearchResults: state => {
     return state.searchResults
+  },
+  getSelectedProduct: state => {
+    return state.selectedProduct
   }
 }
 
@@ -12,12 +16,15 @@ export const mutations = {
   SET_SEARCH_RESULTS(state, results) {
     state.searchResults = results
   },
+  SELECT_PRODUCT(state, product) {
+    state.selectedProduct = product;
+  }
 }
 
 export const actions = {
   async search({commit,state}, term) {
-
-    let response = await this.$axios.get(`/products/search/${term}`)
-    commit('SET_SEARCH_RESULTS', response.data.items);
+    this.$axios.get(`/products/search/${term}`).then( (response) => {
+      commit('SET_SEARCH_RESULTS', response.data.items);
+    })
   }
 }

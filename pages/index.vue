@@ -1,8 +1,6 @@
 <template>
   <div>
 
-    {{getProducts}}
-
     <div class="mt-12">
       <h1 class="m-4">Produkt erstellen</h1>
 

@@ -1,13 +1,14 @@
 <template>
   <header>
     <nav :class="{'scrolled': !view.atTopOfPage}">
+
       <div class="items-center justify-between bg-white hidden px-5 md:flex md:pt-3 lg:py-5">
         <div class="flex-none pr-2">
           <span class="font-bold text-xl text-anthrazit px-4">Unicircle</span>
         </div>
-        <div class="hidden lg:flex w-6/12 justify-between">
+        <div v-if="$route.path !== '/catalog/newlisting'" class="hidden lg:flex w-6/12 justify-between">
 
-          <div class="flex justify-end w-2/6 text-anthrazit font-bold">
+          <div  class="flex justify-end w-2/6 text-anthrazit font-bold">
             <a href="#" class="rounded-full block hover:text-white hover:bg-primary px-4 py-2 mr-2">
               Katalog
             </a>
@@ -53,8 +54,7 @@
         </div>
       </div>
 
-      <div class="bg-white px-5 sm:flex py-5 md:py-3 lg:py-5  lg:hidden">
-
+      <div v-if="$route.path !== '/catalog/newlisting'" class="bg-white px-5 sm:flex py-5 md:py-3 lg:py-5  lg:hidden">
         <div class="hidden sm:inline-block text-anthrazit font-bold sm:w-1/6">
           <a href="#" class="rounded-full block hover:text-white hover:bg-primary px-4 py-2 mr-2">
             Katalog
@@ -78,6 +78,7 @@
           </button>
         </div>
       </div>
+
     </nav>
   </header>
 </template>
