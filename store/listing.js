@@ -1,6 +1,7 @@
 export const state = () => ({
   searchResults: [],
-  selectedProduct: {}
+  selectedProduct: {},
+  productSelected: false,
 })
 
 export const getters = {
@@ -9,6 +10,9 @@ export const getters = {
   },
   getSelectedProduct: state => {
     return state.selectedProduct
+  },
+  isProductSelected: state => {
+    return state.productSelected
   }
 }
 
@@ -17,6 +21,7 @@ export const mutations = {
     state.searchResults = results
   },
   SELECT_PRODUCT(state, product) {
+    state.productSelected = true;
     state.selectedProduct = product;
   }
 }

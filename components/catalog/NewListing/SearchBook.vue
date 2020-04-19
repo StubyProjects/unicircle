@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="text-2xl text-anthrazit">Buch verkaufen</h1>
-    <h1 class="font-bold text-xl text-primary">Schritt 1</h1>
+    <h2 class="font-bold text-xl text-primary">Schritt 1</h2>
 
     <div class="mt-5">
 
