@@ -3,18 +3,22 @@
     <nav :class="{'scrolled': !view.atTopOfPage}">
 
       <div class="items-center justify-between bg-white hidden px-5 md:flex md:pt-3 lg:py-5">
+
         <div class="flex-none pr-2">
-          <span class="font-bold text-xl text-anthrazit px-4">Unicircle</span>
+          <nuxt-link to="/">
+            <h1 class="font-bold text-2xl text-anthrazit px-4 hover:text-primary">Unicircle</h1>
+          </nuxt-link>
         </div>
+
         <div v-if="$route.path !== '/catalog/newlisting'" class="hidden lg:flex w-6/12 justify-between">
 
-          <div  class="flex justify-end w-2/6 text-anthrazit font-bold">
+          <div class="flex justify-end w-2/6 text-anthrazit font-bold">
             <a href="#" class="rounded-full block hover:text-white hover:bg-primary px-4 py-2 mr-2">
               Katalog
             </a>
           </div>
 
-          <div class="w-4/6 relative ">
+          <div class="w-4/6 relative">
             <label for="search-topbar-1"></label>
             <input id="search-topbar-1" class="w-full rounded-full shadow h-10 pl-4 pr-8 pb-1 focus:outline-none"
                    type="search" name="suchen" placeholder="Suchen">
@@ -30,6 +34,7 @@
                 </svg>
             </button>
           </div>
+
         </div>
         <div class="flex lg:px-6 hidden md:inline-flex">
 

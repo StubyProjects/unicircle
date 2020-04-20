@@ -1,9 +1,10 @@
 <template>
     <div class="w-full mt-10" v-if="isProductSelected">
 
-      <img class="border rounded" v-if="getSelectedProduct.volumeInfo.imageLinks" :src="getSelectedProduct.volumeInfo.imageLinks.thumbnail" alt="book-cover">
+      <img class="rounded" v-if="getSelectedProduct.volumeInfo.imageLinks" :src="getSelectedProduct.volumeInfo.imageLinks.thumbnail" alt="book-cover">
 
       <div class="grid grid-cols-3 justify-between mt-10">
+
         <div class="block">
           <h3 class="font-bold">Titel</h3>
           <label for="title">

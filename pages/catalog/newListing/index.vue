@@ -7,10 +7,10 @@
 </template>
 
 <script>
+  import { mapGetters } from "vuex"
   import SearchBook from "@/components/catalog/NewListing/SearchBook";
   import SelectedProduct from "@/components/catalog/NewListing/SelectedProduct";
   import CreateListing from "@/components/catalog/NewListing/CreateListing";
-  import { mapGetters } from "vuex"
 
   export default {
     components: {
@@ -19,7 +19,7 @@
       appCreateListing: CreateListing
     },
     computed: {
-      ...mapGetters('listing',["getSelectedProduct",])
+      ...mapGetters('listing',["getSelectedProduct"])
     }
   }
 </script>
