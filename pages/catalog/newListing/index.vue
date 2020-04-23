@@ -13,6 +13,7 @@
   import CreateListing from "@/components/catalog/NewListing/CreateListing";
 
   export default {
+    middleware: 'new-listing-data',
     components: {
       appSearchBook: SearchBook,
       appSelectedProduct: SelectedProduct,
