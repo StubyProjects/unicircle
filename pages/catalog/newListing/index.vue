@@ -2,7 +2,7 @@
   <div class="max-w-4xl mx-auto">
     <app-search-book></app-search-book>
     <app-selected-product></app-selected-product>
-    <app-create-listing></app-create-listing>
+    <app-create-listing v-if="isProductSelected"></app-create-listing>
   </div>
 </template>
 
@@ -19,7 +19,7 @@
       appCreateListing: CreateListing
     },
     computed: {
-      ...mapGetters('listing',["getSelectedProduct"])
+      ...mapGetters('listing',["getSelectedProduct", "isProductSelected", "getConditions"])
     }
   }
 </script>

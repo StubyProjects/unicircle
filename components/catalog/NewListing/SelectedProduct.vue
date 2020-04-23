@@ -41,7 +41,7 @@
 
           </label>
 
-          <label v-else  for="price_unavailable">
+          <label v-else for="price_unavailable">
             <input id="price_unavailable" value="Preis nicht verfügbar" class="mt-2 rounded shadow h-10 pl-4 pr-8 pb-1 focus:outline-none"
                    type="text" name="price" placeholder="Preis" disabled>
           </label>
