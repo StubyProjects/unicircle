@@ -19,7 +19,7 @@ export const mutations = {
 
 export const actions = {
   async loadAll({commit}) {
-    let {data: products} = await this.$axios.get('products');
+    let {data: products} = await this.$axios.get('products', {params:{page:1}});
 
     commit('SET_PRODUCTS', products)
   },

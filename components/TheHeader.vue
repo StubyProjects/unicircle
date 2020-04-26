@@ -13,9 +13,9 @@
         <div v-if="$route.path !== '/catalog/newlisting'" class="hidden lg:flex w-6/12 justify-between">
 
           <div class="flex justify-end w-2/6 text-anthrazit font-bold">
-            <a href="#" class="rounded-full block hover:text-white hover:bg-primary px-4 py-2 mr-2">
+            <nuxt-link class="rounded-full block hover:text-white hover:bg-primary px-4 py-2 mr-2" to="/catalog">
               Katalog
-            </a>
+            </nuxt-link>
           </div>
 
           <div class="w-4/6 relative">
