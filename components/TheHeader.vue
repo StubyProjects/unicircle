@@ -121,6 +121,6 @@
 
 <style scoped>
   nav.scrolled {
-    @apply shadow fixed w-full;
+    @apply shadow fixed w-full top-0;
   }
 </style>
