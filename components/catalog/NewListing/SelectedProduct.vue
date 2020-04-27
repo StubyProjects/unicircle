@@ -60,7 +60,7 @@
         </div>
 
       </div>
-
+      <pre>{{getSelectedProduct}}</pre>
     </div>
 </template>
 
