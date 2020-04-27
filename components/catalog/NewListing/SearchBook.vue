@@ -11,32 +11,45 @@
 
       <div v-if="searchTerm.length > 0" class="p-5 shadow w-full">
 
-        <div @click="selectBook(result)" v-for="result in getSearchResults" :key="result.id" class="flex mb-3 cursor-pointer hover:text-primary">
-          <img class="h-22 w-16 border rounded" v-if="result.volumeInfo.imageLinks" :src="result.volumeInfo.imageLinks.smallThumbnail" alt="book-cover">
-
-          <div class="ml-4">
-
-            <h3 class="font-bold text-lg">{{result.volumeInfo.title}}</h3>
-            <h4>{{result.volumeInfo.subtitle}}</h4>
-
-            <div class="flex text-xs">
-                  <span class="mr-5" v-for="author in result.volumeInfo.authors">
-                    {{author}},
-                  </span>
-
-              <span class="mr-5" v-for="identifier in result.volumeInfo.industryIdentifiers">
-                    {{identifier.type}}: {{identifier.identifier}}
-                  </span>
-            </div>
-
-            <div class="flex text-xs">
-                 <span>
-                    Verlag: {{result.volumeInfo.publisher}}
-                  </span>
-            </div>
-
+        <div v-if="getSearchResultType === 'google'">
+          <div @click="selectBook(result)" v-for="result in getSearchResults" :key="result.id" class="mb-3 cursor-pointer hover:text-primary">
+            <app-search-results
+            :title="result.volumeInfo.title"
+            :sub-title="result.volumeInfo.subtitle"
+            :authors="result.volumeInfo.authors"
+            :identifiers="result.volumeInfo.industryIdentifiers"
+            :publisher="result.volumeInfo.publisher">
+              <img class="h-22 w-16 border rounded"
+                   v-if="result.volumeInfo.imageLinks"
+                   :src="result.volumeInfo.imageLinks.smallThumbnail"
+                   alt="book-cover">
+            </app-search-results>
           </div>
+
         </div>
+
+        <div v-if="getSearchResultType === 'ownDB'">
+
+          <div @click="selectBook(result)" v-for="result in getSearchResults" :key="result.id" class="flex mb-3 cursor-pointer hover:text-primary">
+            <app-search-results
+              :title="result.title"
+              :sub-title="result.subTitle"
+              :authors="result.authors"
+              :identifiers="[
+                {type: 'isbn10', identifier: result.isbn10},
+                {type: 'isbn13', identifier: result.isbn13}
+                ]"
+              :publisher="result.publisher"
+              >
+              <img class="h-22 w-16 border rounded"
+                   v-if="result.imageUrl"
+                   :src="result.imageUrl"
+                   alt="book-cover">
+            </app-search-results>
+          </div>
+
+        </div>
+
       </div>
     </div>
   </div>
@@ -44,6 +57,8 @@
 
 <script>
   import { mapActions, mapGetters, mapState, mapMutations } from 'vuex'
+  import SearchResults from "@/components/catalog/NewListing/SearchResults"
+
 
   export default {
     data() {
@@ -51,8 +66,11 @@
         searchTerm: ""
       }
     },
+    components: {
+      appSearchResults: SearchResults
+    },
     computed: {
-      ...mapGetters("listing",["getSearchResults"]),
+      ...mapGetters("listing",["getSearchResults","getSearchResultType"]),
       ...mapState("listing",["finishedLoading"])
     },
     methods: {

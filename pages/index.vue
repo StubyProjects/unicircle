@@ -8,7 +8,7 @@
 
 
 export default {
-  middleware: 'load-products',
+  //middleware: 'load-products',
 
   data() {
     return {

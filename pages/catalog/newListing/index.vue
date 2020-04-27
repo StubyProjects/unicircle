@@ -1,8 +1,13 @@
 <template>
   <div class="max-w-4xl mx-auto">
-    <app-search-book></app-search-book>
-    <app-selected-product></app-selected-product>
-    <app-create-listing v-if="isProductSelected"></app-create-listing>
+    <div v-if="isProductListingCreated">
+      Angebot wurde erstellt
+    </div>
+    <div v-else>
+      <app-search-book></app-search-book>
+      <app-selected-product></app-selected-product>
+      <app-create-listing v-if="isProductSelected"></app-create-listing>
+    </div>
   </div>
 </template>
 
@@ -20,7 +25,12 @@
       appCreateListing: CreateListing
     },
     computed: {
-      ...mapGetters('listing',["getSelectedProduct", "isProductSelected", "getConditions"])
+      ...mapGetters('listing',[
+        "getSelectedProduct",
+        "isProductSelected",
+        "getConditions",
+        "isProductListingCreated"
+      ])
     }
   }
 </script>
