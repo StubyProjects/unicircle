@@ -36,7 +36,7 @@
           </div>
 
         </div>
-        <div class="flex lg:px-6 hidden md:inline-flex">
+        <div class="relative flex lg:px-6 hidden md:inline-flex">
 
           <div class="text-anthrazit font-bold">
             <a href="#" class="whitespace-no-wrap hover:text-white rounded-full block hover:bg-primary px-4 py-2">
@@ -50,14 +50,14 @@
 
           <div class="text-anthrazit font-bold">
 
-            <a v-if="$auth.loggedIn" @click="$auth.logout()" href="#" class="flex rounded-full shadow block hover:bg-primary px-3 py-2 lg:ml-3">
-
+            <a v-if="$auth.loggedIn" @click="TOGGLE_PROFILE_DROPDOWN()" href="#" class="flex rounded-full shadow block hover:bg-primary px-3 py-2 lg:ml-3">
               <img class="h-6 w-6 mr-3 rounded-full border-black" :src="$auth.user.picture" alt="profile-picture">{{$auth.user.given_name}}
             </a>
-
             <a v-else @click="login()" href="#" class="rounded-full shadow block hover:bg-primary px-4 py-2 lg:ml-3">
               Einloggen
             </a>
+
+            <app-profile-dropdown v-if="isDropDownActivated && $auth.loggedIn"></app-profile-dropdown>
 
           </div>
         </div>
@@ -93,12 +93,18 @@
 </template>
 
 <script>
+    import ProfileDropdown from "./ProfileDropdown";
+    import { mapGetters, mapMutations } from "vuex";
+
     export default {
-        name: "TheHeader",
+        components: {
+          appProfileDropdown: ProfileDropdown,
+        },
         data () {
           return {
             view: {
-              atTopOfPage: true
+              atTopOfPage: true,
+              profileDropDownActivated: false,
             }
           }
         },
@@ -106,9 +112,10 @@
           window.addEventListener('scroll', this.handleScroll);
         },
         computed: {
-
+          ...mapGetters(["isDropDownActivated"])
         },
         methods: {
+          ...mapMutations(["TOGGLE_PROFILE_DROPDOWN"]),
           handleScroll() {
             if(window.pageYOffset>0){
               // user is scrolled
