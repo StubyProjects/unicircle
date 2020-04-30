@@ -6,13 +6,18 @@
     <div class="mt-5">
 
       <label for="searchbook" class="block">Suche dein Buch</label>
-      <input id="searchbook" v-model="searchTerm" @keyup="searchBook()" class="w-full mt-4 rounded shadow h-10 pl-4 pr-8 pb-1 focus:outline-none"
+      <input id="searchbook" v-model="searchTerm" @keyup="searchBook()"
+             class="w-full mt-4 rounded shadow h-10 pl-4 pr-8 pb-1 focus:outline-none"
              type="search" name="name" placeholder="ISBN, Titel, Autor">
 
       <div v-if="searchTerm.length > 0" class="p-5 shadow w-full">
 
         <div v-if="getSearchResultType === 'google'">
-          <div @click="selectBook(result)" v-for="result in getSearchResults" :key="result.id" class="mb-3 cursor-pointer hover:text-primary">
+          <div
+            @click="selectBook(result)"
+               v-for="result in getSearchResults"
+               :key="result.id"
+               class="mb-3 cursor-pointer hover:text-primary">
             <app-search-results
             :title="result.volumeInfo.title"
             :sub-title="result.volumeInfo.subtitle"
@@ -30,10 +35,13 @@
 
         <div v-if="getSearchResultType === 'ownDB'">
 
-          <div @click="selectBook(result)" v-for="result in getSearchResults" :key="result.id" class="flex mb-3 cursor-pointer hover:text-primary">
+          <div
+               v-for="result in getSearchResults"
+               :key="result.id"
+               class="flex mb-3 cursor-pointer hover:text-primary">
             <app-search-results
               :title="result.title"
-              :sub-title="result.subTitle"
+              :sub-title="result.subtitle"
               :authors="result.authors"
               :identifiers="[
                 {type: 'isbn10', identifier: result.isbn10},
@@ -58,7 +66,6 @@
 <script>
   import { mapActions, mapGetters, mapState, mapMutations } from 'vuex'
   import SearchResults from "@/components/catalog/NewListing/SearchResults"
-
 
   export default {
     data() {

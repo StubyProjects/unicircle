@@ -27,7 +27,8 @@
         <div class="block" v-for="identifier in getSelectedProduct.volumeInfo.industryIdentifiers">
           <h3 class="font-bold">{{identifier.type}}</h3>
           <label for="isbn">
-            <input id="isbn" :value="identifier.identifier" class="mt-2 rounded shadow h-10 pl-4 pr-8 pb-1 focus:outline-none"
+            <input id="isbn" :value="identifier.identifier"
+                   class="mt-2 rounded shadow h-10 pl-4 pr-8 pb-1 focus:outline-none"
                    type="text" name="isbn" placeholder="ISBN" disabled>
           </label>
         </div>
@@ -36,7 +37,9 @@
           <h3 class="font-bold">Listenpreis (Google Books)</h3>
 
           <label v-if="getSelectedProduct.saleInfo.listPrice" for="list_price">
-            <input id="list_price" :value="`${getSelectedProduct.saleInfo.listPrice.amount} ${getSelectedProduct.saleInfo.listPrice.currencyCode}`" class="mt-2 rounded shadow h-10 pl-4 pr-8 pb-1 focus:outline-none"
+            <input id="list_price"
+                   :value="`${getSelectedProduct.saleInfo.listPrice.amount} ${getSelectedProduct.saleInfo.listPrice.currencyCode}`"
+                   class="mt-2 rounded shadow h-10 pl-4 pr-8 pb-1 focus:outline-none"
                    type="text" name="price" placeholder="Preis" disabled>
 
           </label>
@@ -58,7 +61,6 @@
             {{getSelectedProduct.volumeInfo.description}}...
           </p>
         </div>
-
       </div>
 
     </div>

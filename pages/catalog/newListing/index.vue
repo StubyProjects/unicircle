@@ -3,9 +3,14 @@
     <div v-if="isProductListingCreated">
       Angebot wurde erstellt
     </div>
+
     <div v-else>
       <app-search-book></app-search-book>
-      <app-selected-product></app-selected-product>
+
+      <app-selected-product>
+
+      </app-selected-product>
+
       <app-create-listing v-if="isProductSelected"></app-create-listing>
     </div>
   </div>
@@ -18,7 +23,7 @@
   import CreateListing from "@/components/catalog/NewListing/CreateListing";
 
   export default {
-    middleware: 'new-listing-data',
+    middleware: ['new-listing-data','auth'],
     components: {
       appSearchBook: SearchBook,
       appSelectedProduct: SelectedProduct,

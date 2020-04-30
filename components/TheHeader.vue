@@ -49,12 +49,16 @@
           </div>
 
           <div class="text-anthrazit font-bold">
-            <a v-if="$auth.loggedIn" @click="$auth.logout()" href="#" class="rounded-full shadow block hover:bg-primary px-4 py-2 lg:ml-3">
-              Ausloggen
+
+            <a v-if="$auth.loggedIn" @click="$auth.logout()" href="#" class="flex rounded-full shadow block hover:bg-primary px-3 py-2 lg:ml-3">
+
+              <img class="h-6 w-6 mr-3 rounded-full border-black" :src="$auth.user.picture" alt="profile-picture">{{$auth.user.given_name}}
             </a>
+
             <a v-else @click="login()" href="#" class="rounded-full shadow block hover:bg-primary px-4 py-2 lg:ml-3">
               Einloggen
             </a>
+
           </div>
         </div>
       </div>
@@ -100,6 +104,9 @@
         },
         beforeMount () {
           window.addEventListener('scroll', this.handleScroll);
+        },
+        computed: {
+
         },
         methods: {
           handleScroll() {

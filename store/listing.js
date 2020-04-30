@@ -75,32 +75,42 @@ export const actions = {
     let response = await this.$axios.get("/conditions")
     commit('SET_CONDITIONS', response.data);
   },
-  async createListing({commit, state}, {price, condition}) {
+
+  async createProduct({commit, state, dispatch}, {price, condition}) {
     const product = state.selectedProduct
     const productInfo = product.volumeInfo;
 
-    let response = await this.$axios.post("/products", {
+    let response = await this.$axios.post("/products/new", {
       title: productInfo.title,
       subtitle: productInfo.subtitle ? productInfo.subtitle : "",
-      description: productInfo.description,
-      isbn13: productInfo.industryIdentifiers[0].identifier,
-      isbn10: productInfo.industryIdentifiers[1].identifier,
+      description: productInfo.description ? productInfo.description : "nicht verfügbar",
+      isbn13: productInfo.industryIdentifiers ? productInfo.industryIdentifiers[0].identifier : "nicht verfügbar",
+      isbn10: productInfo.industryIdentifiers ? productInfo.industryIdentifiers[1].identifier: "nicht verfügbar",
       authors: await productInfo.authors.map((name) => ({name})),
       listPrice: product.saleInfo.listPrice ? product.saleInfo.listPrice.amount.toString() : "Preis nicht verfügbar",
-      price: Number(price),
       imageUrl: productInfo.imageLinks ? productInfo.imageLinks.thumbnail : "kein Bild verfügbar",
       categories: productInfo.categories ? await productInfo.categories.map((title) => ({title})) : [],
-      conditionName: condition.name,
-      conditionDescription: condition.description,
-      images: state.productImages,
-      publisher: productInfo.publisher
+      publisher: productInfo.publisher ? productInfo.publisher : "nicht verfügbar",
     }).catch(error => {
-        console.log(error)
-      })
+      console.log(error)
+    })
 
     if(response.status && response.status === 201) {
+
+      await dispatch("createListing", { productId: response.data.id, price, condition })
       commit("SET_PRODUCT_CREATED");
     }
+  },
 
+  async createListing({commit, state}, { productId, price, condition }) {
+    let listing = await this.$axios.post("/products/list", {
+      productId,
+      conditionName: condition.name,
+      conditionDescription: condition.description,
+      price: Number(price),
+      images: state.productImages
+    }).catch(error => {
+      console.log(error)
+    })
   }
 }

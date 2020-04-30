@@ -1,7 +1,8 @@
 <template>
   <div class="mt-10">
-    <h1 class="text-2xl text-anthrazit">Angebot erstellen</h1>
-    <h2 class="font-bold text-xl text-primary">Schritt 2</h2>
+    <h1 class="text-3xl text-anthrazit">Herzlichen Glückwunsch, Du verkaufst dieses Produkt als erstes!</h1>
+    <h2 class="text-2xl text-anthrazit mt-5">Angebot erstellen</h2>
+    <h3 class="font-bold text-xl text-primary">Schritt 2</h3>
 
     <div class="grid grid-cols-3 justify-between mt-10">
       <div class="block">
@@ -27,7 +28,7 @@
     </div>
     <app-file-upload></app-file-upload>
     <div class="mt-5">
-      <button v-if="getProductImages.length > 0 && price.length > 0" @click="createListing({price, condition})" class="font-bold rounded shadow block bg-primary hover:bg-white px-4 py-2">Angebot veröffentlichen</button>
+      <button v-if="getProductImages.length > 0 && price.length > 0" @click="createProduct({price, condition})" class="font-bold rounded shadow block bg-primary hover:bg-white px-4 py-2">Angebot veröffentlichen</button>
     </div>
   </div>
 </template>
@@ -53,7 +54,7 @@
           ...mapGetters("listing",["getConditions","getProductImages"])
         },
         methods: {
-          ...mapActions("listing",["loadConditions","createListing"]),
+          ...mapActions("listing",["loadConditions","createProduct"]),
         }
     }
 
