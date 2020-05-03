@@ -10,7 +10,6 @@ export const getters = {
 
 export const mutations = {
   TOGGLE_PROFILE_DROPDOWN(state) {
-    console.log(state.profileDropDownActivated)
     state.profileDropDownActivated = !state.profileDropDownActivated
   },
 }
