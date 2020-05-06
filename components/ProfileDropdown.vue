@@ -1,7 +1,12 @@
 <template>
-    <div @click="TOGGLE_PROFILE_DROPDOWN()" class="absolute z-50 mt-3 bg-white right-0 mr-6 rounded shadow-md w-1/2">
+    <div @click="TOGGLE_PROFILE_DROPDOWN()" class="absolute z-50 mt-3 bg-white right-0 mr-6 rounded shadow-md w-2/3">
       <nuxt-link to="/profile">
         <div class="px-5 py-2 hover:bg-gray-200 cursor-pointer">Mein Profil</div>
+      </nuxt-link>
+      <nuxt-link to="/catalog/newlisting">
+        <div class="px-5 py-2 hover:bg-gray-200 cursor-pointer">
+          Jetzt verkaufen
+        </div>
       </nuxt-link>
       <nuxt-link to="/profile">
         <div class="px-5 py-2 hover:bg-gray-200 cursor-pointer">Einstellungen</div>

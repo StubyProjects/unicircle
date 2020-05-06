@@ -7,6 +7,9 @@
 module.exports = {
   theme: {
     extend: {
+      padding: {
+        1.5: '0.375rem'
+      },
       colors: {
         primary: '#21ce99',
         anthrazit: '#333333'
