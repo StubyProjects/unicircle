@@ -15,7 +15,7 @@
       <div v-if="getNotifications.length > 0">
         <div class="relative px-5 py-4 hover:bg-gray-200 cursor-pointer" v-for="(notification, index) in getNotifications">
 
-          <div @click="deleteNotification(notification.id)" class="p-1 absolute mt-3 mr-2 right-0 top-0 ml-5 bg-white rounded-full shadow hover:bg-red-500">
+          <div @click="deleteNotification({id: notification.id, index})" class="p-1 absolute mt-3 mr-2 right-0 top-0 ml-5 bg-white rounded-full shadow hover:bg-red-500">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="12pt" height="12pt" viewBox="0 0 24 24" version="1.1">
               <g id="surface105499">
                 <path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 10 2 L 9 3 L 3 3 L 3 5 L 21 5 L 21 3 L 15 3 L 14 2 Z M 4.367188 7 L 5.890625 20.265625 C 6.023438 21.253906 6.878906 22 7.875 22 L 16.121094 22 C 17.121094 22 17.972656 21.253906 18.105469 20.253906 L 19.632812 7 Z M 4.367188 7 "/>
