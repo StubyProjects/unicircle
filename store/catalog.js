@@ -29,5 +29,6 @@ export const actions = {
     let newProduct = response.data;
 
     commit('CREATE', newProduct)
+
   }
 }

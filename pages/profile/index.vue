@@ -53,12 +53,12 @@
 
       </div>
     </div>
-
+    {{getUserProfile}}
   </div>
 </template>
 
 <script>
-  import { mapActions } from "vuex"
+  import { mapActions,mapGetters } from "vuex"
 
   export default {
     mounted() {
@@ -71,7 +71,10 @@
         fullname: "",
       }
     },
-    middleware: "auth",
+    computed: {
+      ...mapGetters('profile',['getUserProfile'])
+    },
+    middleware: ['auth', 'userprofile'],
     methods: {
       ...mapActions("profile",["updateProfile"]),
       changePicture(event) {
