@@ -37,6 +37,7 @@
 
       <div v-else>
         <div class="px-5 py-3 hover:bg-gray-200 cursor-pointer">
+
           <div class="mb-3">Aktuell keine Benachrichtigungen</div>
         </div>
       </div>
