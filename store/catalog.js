@@ -1,10 +1,18 @@
 export const state = () => ({
   products: [],
+  universities:[],
+  courses:[]
 })
 
 export const getters = {
   getProducts: state => {
     return state.products
+  },
+  getUniversities: state =>{
+    return state.universities
+  },
+  getCourses: state =>{
+    return state.courses
   }
 }
 
@@ -12,9 +20,13 @@ export const mutations = {
   SET_PRODUCTS(state, products) {
     state.products = products
   },
-  CREATE(state, product) {
-    state.products = state.products.concat(product)
+  SET_UNIVERSITIES(state, universities){
+    state.universities = universities
+  },
+  SET_COURSESBYUNIID(state, courses){
+    state.courses = courses
   }
+
 }
 
 export const actions = {
@@ -23,11 +35,15 @@ export const actions = {
 
     commit('SET_PRODUCTS', products)
   },
-  async create({commit, state}, product) {
-    let response = await this.$axios.post('/products', product)
+  async loadAllUniversities({commit}) {
+    let {data: universities} = await this.$axios.get('university');
 
-    let newProduct = response.data;
+    commit('SET_UNIVERSITIES', universities)
+  },
+  async loadCourseByUniversityID({commit},uniID){
+    let {data: courses} = await this.$axios.get("university/" + uniID + "/courses");
 
-    commit('CREATE', newProduct)
+    commit('SET_COURSESBYUNIID', courses)
   }
+
 }
