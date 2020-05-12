@@ -46,6 +46,9 @@ export default {
   axios: {
     baseURL: 'http://localhost:8000'
   },
+  router: {
+    middleware: ['notification']
+  },
   auth: {
     redirect: {
       login: '/', // redirect user when not connected

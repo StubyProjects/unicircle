@@ -45,5 +45,4 @@ export const actions = {
 
     commit('SET_COURSESBYUNIID', courses)
   }
-
 }

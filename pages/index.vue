@@ -8,8 +8,7 @@
 
 
 export default {
-  //middleware: 'load-products',
-
+  middleware: ['userprofile', 'notification'],
   data() {
     return {
       product: {
