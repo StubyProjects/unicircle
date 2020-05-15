@@ -19,26 +19,26 @@
 
     <div class="mt-5">
       <h3 class="font-bold">Vorname</h3>
-      <label for="firstname">
-        <input id="firstname"
-               v-model="$v.firstname.$model"
-               :class="{ 'is-invalid': $v.firstname.$error }"
+      <label for="firstName">
+        <input id="firstName"
+               v-model="$v.firstName.$model"
+               :class="{ 'is-invalid': $v.firstName.$error }"
                class="mt-2 w-full rounded shadow h-10 pl-4 pr-8 pb-1 focus:outline-none"
                type="text" name="fullname">
       </label>
-      <span v-if="!$v.firstname.required" class="error">Pflichtfeld</span>
+      <span v-if="!$v.firstName.required" class="error">Pflichtfeld</span>
     </div>
 
     <div class="mt-5">
       <h3 class="font-bold">Nachname</h3>
-      <label for="lastname">
-        <input id="lastname"
-               :class="{ 'is-invalid': $v.lastname.$error }"
-               v-model="$v.lastname.$model"
+      <label for="lastName">
+        <input id="lastName"
+               :class="{ 'is-invalid': $v.lastName.$error }"
+               v-model="$v.lastName.$model"
                class="mt-2 w-full rounded shadow h-10 pl-4 pr-8 pb-1 focus:outline-none"
                type="text" name="fullname">
       </label>
-      <span v-if="!$v.lastname.required" class="error">Pflichtfeld</span>
+      <span v-if="!$v.lastName.required" class="error">Pflichtfeld</span>
     </div>
 
     <div class="mt-5">
@@ -79,7 +79,7 @@
         :class="{ 'is-invalid': $v.birthday.$error }"
         v-model="$v.birthday.$model"
         format="DD.MM.YYYY"
-        value-type="timestamp">
+        value-type="X">
       </date-picker>
       <span v-if="!$v.birthday.required" class="error">Pflichtfeld</span>
     </div>
@@ -109,8 +109,8 @@
     mixins: [validationMixin],
     data() {
       return {
-        firstname: "",
-        lastname: "",
+        firstName: "",
+        lastName: "",
         birthday: null
       }
     },
@@ -119,16 +119,16 @@
     },
     mounted() {
       if (this.$auth.user.name) {
-        this.firstname = this.$store.getters['profile/getUserProfile'].userAuth0.given_name;
-        this.lastname = this.$store.getters['profile/getUserProfile'].userAuth0.family_name;
+        this.firstName = this.$store.getters['profile/getUserProfile'].userAuth0.given_name;
+        this.lastName = this.$store.getters['profile/getUserProfile'].userAuth0.family_name;
       }
       this.$v.$touch();
     },
     validations: {
-      firstname: {
+      firstName: {
         required
       },
-      lastname: {
+      lastName: {
         required
       },
       birthday: {
@@ -136,7 +136,10 @@
       }
     },
     methods: {
-      ...mapActions("profile", ["updateProfile"]),
+      ...mapActions("profile", [
+        "updateProfile",
+        "completeUser"
+      ]),
       changePicture(event) {
         let url = URL.createObjectURL(event.target.files[0])
         this.changeProfilePicture(url)
@@ -149,9 +152,8 @@
         if(this.$v.$invalid) {
           this.$v.$touch();
         } else {
-          alert('created');
+          this.completeUser({firstName: this.firstName, lastName: this.lastName, birthday: this.birthday})
         }
-
       }
     }
   }
