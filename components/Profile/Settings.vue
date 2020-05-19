@@ -85,15 +85,22 @@
     </div>
 
     <div class="mt-10 flex justify-between">
-      <button v-if="getUserProfile.profileIsCompleted" @click="updateProfile({fullname})"
+      <button v-if="getUserProfile.profileIsCompleted"
+              @click="updateProfile({firstName, lastName, birthday})"
               class="font-bold rounded shadow block bg-primary hover:bg-white px-4 py-2">
-
+        Profil aktualisieren
       </button>
-      <button v-else @click="completeUserRegistration()"
+      <button v-else
+              @click="completeUserRegistration()"
               class="font-bold rounded shadow block bg-primary hover:bg-white px-4 py-2">
         Profil vervollständigen
       </button>
     </div>
+
+<!--    <pre>-->
+<!--      {{getUserProfile}}-->
+<!--    </pre>-->
+
   </div>
 </template>
 
@@ -122,6 +129,10 @@
         this.firstName = this.$store.getters['profile/getUserProfile'].userAuth0.given_name;
         this.lastName = this.$store.getters['profile/getUserProfile'].userAuth0.family_name;
       }
+      if(this.$store.getters['profile/getUserProfile'].profileIsCompleted) {
+        this.birthday = this.$store.getters['profile/getUserProfile'].mangoPayUser.Birthday.toString()
+      }
+
       this.$v.$touch();
     },
     validations: {
@@ -142,7 +153,6 @@
       ]),
       changePicture(event) {
         let url = URL.createObjectURL(event.target.files[0])
-        this.changeProfilePicture(url)
       },
       getSocialProfiles(identityProvider) {
         const identities = this.$store.getters['profile/getUserProfile'].userAuth0.identities

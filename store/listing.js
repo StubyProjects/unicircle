@@ -103,7 +103,7 @@ export const actions = {
   },
 
   async createListing({commit, state}, { productId, price, condition }) {
-    let listing = await this.$axios.post("/products/list", {
+    await this.$axios.post("/products/list", {
       productId,
       conditionName: condition.name,
       conditionDescription: condition.description,
