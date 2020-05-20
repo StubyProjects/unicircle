@@ -43,11 +43,20 @@
 
     <div class="mt-5">
       <h3 class="font-bold">E-Mail</h3>
-      <label for="email">
-        <input id="email" :value="$auth.user.email"
-               class="mt-2 w-full rounded shadow h-10 pl-4 pr-8 pb-1 focus:outline-none"
-               type="text" name="email" disabled>
-      </label>
+      <div class="relative">
+        <label for="email">
+          <input id="email" :value="$auth.user.email"
+                 class="mt-2 w-full rounded shadow h-10 pl-4 pr-8 pb-1 focus:outline-none"
+                 type="text" name="email" disabled>
+        </label>
+        <nuxt-link v-if="!getUserProfile.userAuth0.identities[0].isSocial" to="/profile/email">
+          <button
+            class="absolute mt-2 right-0 font-bold rounded shadow bg-primary hover:bg-white px-4 py-2">
+            Ändern
+          </button>
+        </nuxt-link>
+
+      </div>
       <span class="mt-3 text-primary">{{getUserProfile.userAuth0.email_verified ? 'verifiziert' : 'noch nicht verifiziert'}}</span>
     </div>
 
@@ -96,10 +105,6 @@
         Profil vervollständigen
       </button>
     </div>
-
-<!--    <pre>-->
-<!--      {{getUserProfile}}-->
-<!--    </pre>-->
 
   </div>
 </template>

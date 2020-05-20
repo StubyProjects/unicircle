@@ -3,19 +3,15 @@
     <div>
       <h1 class="text-2xl font-bold text-anthrazit">Mein Profil</h1>
     </div>
-
     <div class="grid grid-cols-3 gap-4 mt-5">
       <div class="col-span-1">
         <ul>
-
           <li
             v-for="tab in tabs"
             :class="['text-xl', 'hover:text-primary', 'cursor-pointer', 'mt-2', { active: currentTab === tab.component }]"
             @click="currentTab = tab.component">
             {{tab.name}}
           </li>
-
-
         </ul>
       </div>
       <div class="col-span-2">

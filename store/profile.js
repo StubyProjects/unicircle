@@ -15,7 +15,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async updateProfile({commit}, {firstName, lastName, birthday}) {
+  async updateProfile({dispatch,commit}, {firstName, lastName, birthday}) {
     await this.$axios.patch("/user/update", {
       firstName,
       lastName,
@@ -23,6 +23,7 @@ export const actions = {
     }).catch(error => {
       console.log(error)
     })
+    await dispatch('getUserProfile');
     await this.$auth.fetchUser();
   },
 
@@ -31,7 +32,7 @@ export const actions = {
     commit('SET', response.data)
   },
 
-  async completeUser({commit, state}, {firstName, lastName, birthday}) {
+  async completeUser({dispatch,commit, state}, {firstName, lastName, birthday}) {
     await this.$axios.post('/user',{
       firstName,
       lastName,
@@ -40,5 +41,9 @@ export const actions = {
     }).catch(error => {
       console.log(error)
     })
+
+    await dispatch('getUserProfile');
+    await dispatch('notifications/loadNotification', {}, {root: true});
+    await this.$auth.fetchUser();
   }
 }
