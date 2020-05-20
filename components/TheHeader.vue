@@ -1,6 +1,6 @@
 <template>
   <header>
-    <nav :class="{'scrolled': !view.atTopOfPage}">
+    <nav class="z-50" :class="{'scrolled': !view.atTopOfPage}">
 
       <div class="items-center justify-between bg-white hidden px-5 md:flex md:pt-3 lg:py-5">
 

@@ -23,8 +23,10 @@ export const actions = {
     }).catch(error => {
       console.log(error)
     })
+
     await dispatch('getUserProfile');
     await this.$auth.fetchUser();
+    dispatch('snackbar/setMessage',"Profil aktualisiert", { root: true })
   },
 
   async getUserProfile({commit}) {
@@ -43,7 +45,8 @@ export const actions = {
     })
 
     await dispatch('getUserProfile');
-    await dispatch('notifications/loadNotification', {}, {root: true});
+    await dispatch('notifications/loadNotification', {}, { root: true });
     await this.$auth.fetchUser();
+    dispatch('snackbar/setMessage',"Profil vervollständigt", { root: true })
   }
 }
