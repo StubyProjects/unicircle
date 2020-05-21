@@ -6,7 +6,8 @@
 
 <script>
     export default {
-        name: "index"
+        name: "index",
+        middleware: 'changeEmail'
     }
 </script>
 

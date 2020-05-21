@@ -78,7 +78,8 @@
     export default {
         mixins: [validationMixin],
         mounted() {
-          if (this.$store.getters['profile/getUserProfile'].profileIsCompleted) {
+          if (this.$store.getters['profile/getUserProfile'].profileIsCompleted
+            && this.$store.getters['profile/getUserProfile'].mangoPayUser.Address.AddressLine1) {
             Object.assign(this.Address , this.$store.getters['profile/getUserProfile'].mangoPayUser.Address);
           }
         },
