@@ -7,7 +7,7 @@
       <div class="col-span-1">
         <ul>
           <li
-            v-for="tab in tabs"
+            v-for="tab in getSettingTabs"
             :class="['text-xl', 'hover:text-primary', 'cursor-pointer', 'mt-2', { active: currentTab === tab.component }]"
             @click="currentTab = tab.component">
             {{tab.name}}
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import Settings from "../../components/Profile/Settings";
   import Shipping from "../../components/Profile/Shipping";
   import Wallet from "../../components/Profile/Wallet";
@@ -30,27 +31,14 @@
   export default {
     data() {
       return {
-        currentTab: 'Settings',
-        tabs: [
-          {
-            name:'Einstellungen',
-            component: 'Settings'
-          },
-          {
-            name: 'Versand',
-            component: 'Shipping'
-          },
-          {
-            name: 'Bezahlung',
-            component: 'Wallet'
-          }
-        ]
+        currentTab: 'Settings'
       }
     },
     computed: {
       currentTabComponent() {
         return "app-" + this.currentTab.toLowerCase();
-      }
+      },
+      ...mapGetters('profile',['getSettingTabs'])
     },
     components: {
       appSettings: Settings,

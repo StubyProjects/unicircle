@@ -1,10 +1,19 @@
 export const state = () => ({
   userprofile: {},
+  settingTabs: [
+    {
+      name: 'Einstellungen',
+      component: 'Settings'
+    }
+    ]
 })
 
 export const getters = {
   getUserProfile: state => {
     return state.userprofile
+  },
+  getSettingTabs: state => {
+    return state.settingTabs
   }
 }
 
@@ -12,6 +21,17 @@ export const mutations = {
   SET(state, user) {
     state.userprofile = user
   },
+  ACTIVATE_PROFILE(state) {
+    state.settingTabs.push({
+        name: 'Versand',
+        component: 'Shipping'
+      },
+      {
+        name: 'Bezahlung',
+        component: 'Wallet'
+      })
+
+  }
 }
 
 export const actions = {
@@ -29,9 +49,24 @@ export const actions = {
     dispatch('snackbar/setMessage',"Profil aktualisiert", { root: true })
   },
 
-  async getUserProfile({commit}) {
+  async updateUserAddress({dispatch,commit}, Address) {
+    await this.$axios.patch("/user/updateUserAddress", {
+      Address
+    }).catch(error => {
+      console.log(error)
+    })
+    await dispatch('getUserProfile');
+    dispatch('snackbar/setMessage',"Adresse aktualisiert", { root: true })
+  },
+
+  async getUserProfile({state,commit}) {
     const response = await this.$axios.get('/user');
     commit('SET', response.data)
+
+    if(state.settingTabs.length < 3 && state.userprofile.profileIsCompleted) {
+      commit('ACTIVATE_PROFILE')
+    }
+
   },
 
   async completeUser({dispatch,commit, state}, {firstName, lastName, birthday}) {

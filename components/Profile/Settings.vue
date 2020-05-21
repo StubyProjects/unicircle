@@ -95,7 +95,7 @@
 
     <div class="mt-10 flex justify-between">
       <button v-if="getUserProfile.profileIsCompleted"
-              @click="updateProfile({firstName, lastName, birthday})"
+              @click="updateUserProfile()"
               class="font-bold rounded shadow block bg-primary hover:bg-white px-4 py-2">
         Profil aktualisieren
       </button>
@@ -168,6 +168,13 @@
           this.$v.$touch();
         } else {
           this.completeUser({firstName: this.firstName, lastName: this.lastName, birthday: this.birthday})
+        }
+      },
+      updateUserProfile() {
+        if(this.$v.$invalid) {
+          this.$v.$touch();
+        } else {
+          this.updateProfile({firstName: this.firstName, lastName: this.lastName, birthday: this.birthday})
         }
       }
     }
