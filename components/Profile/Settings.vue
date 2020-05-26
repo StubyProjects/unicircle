@@ -83,13 +83,24 @@
 
     <div class="mt-5">
       <h3 class="font-bold">Geburtstag</h3>
-      <date-picker
-        class="mt-2 text-base"
-        :class="{ 'is-invalid': $v.birthday.$error }"
-        v-model="$v.birthday.$model"
-        format="DD.MM.YYYY"
-        value-type="X">
-      </date-picker>
+      <client-only>
+
+        <date-picker class="mt-2 text-base">
+
+        </date-picker>
+
+
+<!--        <date-picker-->
+<!--          class="mt-2 text-base"-->
+<!--          :class="{ 'is-invalid': $v.birthday.$error }"-->
+<!--          v-model="$v.birthday.$model"-->
+<!--          format="DD.MM.YYYY"-->
+<!--          value-type="X">-->
+<!--        </date-picker>-->
+
+
+
+      </client-only>
       <span v-if="!$v.birthday.required" class="error">Pflichtfeld</span>
     </div>
 
@@ -111,13 +122,10 @@
 
 <script>
   import { mapActions, mapGetters } from "vuex"
-  import DatePicker from 'vue2-datepicker';
-  import 'vue2-datepicker/index.css';
   import { validationMixin } from 'vuelidate'
   import { required } from 'vuelidate/lib/validators'
 
   export default {
-    components: { DatePicker },
     mixins: [validationMixin],
     data() {
       return {
@@ -180,15 +188,6 @@
     }
   }
 </script>
-
-<style lang="scss">
-  $input-hover-border-color: #21ce99;
-  $default-color: #333333;
-  $primary-color: #21ce99;
-
-  @import '~vue2-datepicker/scss/index.scss';
-
-</style>
 
 <style scoped>
   .is-invalid {

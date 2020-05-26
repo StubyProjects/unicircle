@@ -27,6 +27,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    { src: '~/plugins/datepicker', mode: 'client' }
   ],
   /*
   ** Nuxt.js dev-modules

@@ -7,8 +7,7 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
+    "start": "nuxt start"
   },
   "dependencies": {
     "@nuxtjs/auth": "^4.9.0",
@@ -17,7 +16,7 @@
     "node-sass": "^4.14.1",
     "nuxt": "^2.0.0",
     "sass-loader": "^8.0.2",
-    "vue2-datepicker": "^3.5.0",
+    "vuejs-datepicker": "^1.6.2",
     "vuelidate": "^0.7.5"
   },
   "devDependencies": {
