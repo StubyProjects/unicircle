@@ -71,16 +71,16 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
   import { validationMixin } from 'vuelidate'
   import { required,numeric } from 'vuelidate/lib/validators'
 
     export default {
         mixins: [validationMixin],
         mounted() {
-          if (this.$store.getters['profile/getUserProfile'].profileIsCompleted
-            && this.$store.getters['profile/getUserProfile'].mangoPayUser.Address.AddressLine1) {
-            Object.assign(this.Address , this.$store.getters['profile/getUserProfile'].mangoPayUser.Address);
+          if (this.getUserProfile.profileIsCompleted
+            && this.getUserProfile.mangoPayUser.Address.AddressLine1) {
+            Object.assign(this.Address , this.getUserProfile.mangoPayUser.Address);
           }
         },
         data() {
@@ -105,6 +105,9 @@
             }
           }
         },
+      computed: {
+        ...mapGetters('profile', ['getUserProfile'])
+      },
         validations: {
           Address: {
             AddressLine1: {

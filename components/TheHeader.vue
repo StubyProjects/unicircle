@@ -45,7 +45,7 @@
               Einloggen
             </a>
 
-            <app-profile-dropdown v-if="isDropDownActivated && $auth.loggedIn"></app-profile-dropdown>
+            <app-profile-dropdown v-if="isProfileDropDownActivated && $auth.loggedIn"></app-profile-dropdown>
 
           </div>
         </div>
@@ -83,7 +83,6 @@
       return {
         view: {
           atTopOfPage: true,
-          profileDropDownActivated: false,
         }
       }
     },
@@ -91,10 +90,10 @@
       window.addEventListener('scroll', this.handleScroll);
     },
     computed: {
-      ...mapGetters(["isDropDownActivated"])
+      ...mapGetters(["isProfileDropDownActivated"])
     },
     methods: {
-      ...mapMutations(["TOGGLE_PROFILE_DROPDOWN"]),
+      ...mapMutations(["TOGGLE_PROFILE_DROPDOWN","CLOSE_PROFILE_DROPDOWN"]),
       handleScroll() {
         if (window.pageYOffset > 0) {
           // user is scrolled

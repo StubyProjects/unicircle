@@ -1,6 +1,6 @@
 <template>
   <div class="text-anthrazit font-bold">
-    <div @click="dropdownActivated=!dropdownActivated"
+    <div @click="TOGGLE_NOTIFICATION_DROPDOWN()"
          class="rounded-full cursor-pointer p-2 hover:bg-primary relative">
       <img src="~/assets/notification.png" alt="login symbol">
       <div v-if="getNotifications.length > 0"
@@ -10,7 +10,7 @@
       </div>
     </div>
 
-    <div v-if="dropdownActivated" class="absolute z-50 mt-3 bg-white left-0 mr-6 rounded shadow-md w-full">
+    <div v-if="isDroppedDown" class="absolute z-50 mt-3 bg-white left-0 mr-6 rounded shadow-md w-full">
 
       <div v-if="getNotifications.length > 0">
         <div class="relative px-5 py-4 hover:bg-gray-200 cursor-pointer" v-for="(notification, index) in getNotifications">
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
+  import { mapGetters, mapActions, mapMutations } from 'vuex'
 
   export default {
     data() {
@@ -56,10 +56,14 @@
       }
     },
     methods: {
-      ...mapActions('notifications', ['deleteNotification'])
+      ...mapActions('notifications', ['deleteNotification']),
+      ...mapMutations(['TOGGLE_NOTIFICATION_DROPDOWN'])
     },
     computed: {
-      ...mapGetters('notifications',['getNotifications'])
+      ...mapGetters({
+        getNotifications: 'notifications/getNotifications',
+        isDroppedDown: 'isNotificationDropDownActivated'
+      })
     }
   }
 </script>

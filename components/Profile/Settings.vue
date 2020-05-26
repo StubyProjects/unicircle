@@ -131,11 +131,11 @@
     },
     mounted() {
       if (this.$auth.user.name) {
-        this.firstName = this.$store.getters['profile/getUserProfile'].userAuth0.given_name;
-        this.lastName = this.$store.getters['profile/getUserProfile'].userAuth0.family_name;
+        this.firstName = this.getUserProfile.userAuth0.given_name;
+        this.lastName = this.getUserProfile.userAuth0.family_name;
       }
-      if(this.$store.getters['profile/getUserProfile'].profileIsCompleted) {
-        this.birthday = this.$store.getters['profile/getUserProfile'].mangoPayUser.Birthday.toString()
+      if(this.getUserProfile.profileIsCompleted) {
+        this.birthday = this.getUserProfile.mangoPayUser.Birthday.toString()
       }
 
       this.$v.$touch();
@@ -160,7 +160,7 @@
         let url = URL.createObjectURL(event.target.files[0])
       },
       getSocialProfiles(identityProvider) {
-        const identities = this.$store.getters['profile/getUserProfile'].userAuth0.identities
+        const identities = this.getUserProfile.userAuth0.identities
         return identities.filter(identity => identity.provider === identityProvider).length > 0 ? 'Verbunden' : '';
       },
       completeUserRegistration() {

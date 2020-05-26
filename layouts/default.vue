@@ -1,7 +1,9 @@
 <template>
   <div>
     <TheHeader/>
-    <nuxt />
+    <div @click="closeDropDowns()">
+      <nuxt/>
+    </div>
     <TheSnackbar/>
     <TheFooter/>
   </div>
@@ -11,12 +13,20 @@
   import TheHeader from '@/components/TheHeader'
   import TheFooter from "@/components/TheFooter";
   import TheSnackbar from "../components/TheSnackbar";
+  import { mapMutations } from 'vuex'
 
   export default {
     components: {
       TheSnackbar,
       TheFooter,
       TheHeader
+    },
+    methods: {
+      ...mapMutations(['CLOSE_PROFILE_DROPDOWN','CLOSE_NOTIFICATION_DROPDOWN']),
+      closeDropDowns() {
+        this.CLOSE_PROFILE_DROPDOWN();
+        this.CLOSE_NOTIFICATION_DROPDOWN();
+      }
     }
   }
 </script>
