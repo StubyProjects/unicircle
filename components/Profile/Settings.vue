@@ -85,21 +85,17 @@
       <h3 class="font-bold">Geburtstag</h3>
       <client-only>
 
-        <date-picker class="mt-2 text-base">
+        <date-picker
+          :language="de"
+          :use-utc="true"
 
-        </date-picker>
-
-
-<!--        <date-picker-->
-<!--          class="mt-2 text-base"-->
-<!--          :class="{ 'is-invalid': $v.birthday.$error }"-->
-<!--          v-model="$v.birthday.$model"-->
-<!--          format="DD.MM.YYYY"-->
-<!--          value-type="X">-->
-<!--        </date-picker>-->
-
-
-
+          format="dd. MMMM yyyy"
+          calendar-class="bottom-0"
+          input-class="w-full rounded shadow h-10 pl-4 pr-8 pb-1 focus:outline-none"
+          class="mt-2 text-base"
+          v-model="$v.birthday.$model"
+          :class="{ 'is-invalid': $v.birthday.$error }">
+        </date-picker >
       </client-only>
       <span v-if="!$v.birthday.required" class="error">Pflichtfeld</span>
     </div>
@@ -124,18 +120,23 @@
   import { mapActions, mapGetters } from "vuex"
   import { validationMixin } from 'vuelidate'
   import { required } from 'vuelidate/lib/validators'
+  import {de} from 'vuejs-datepicker/dist/locale'
 
   export default {
     mixins: [validationMixin],
     data() {
       return {
+        de: de,
         firstName: "",
         lastName: "",
         birthday: null
       }
     },
     computed: {
-      ...mapGetters('profile', ['getUserProfile'])
+      ...mapGetters('profile', ['getUserProfile']),
+      parsedBirthday() {
+        return Date.parse(this.birthday) / 1000;
+      }
     },
     mounted() {
       if (this.$auth.user.name) {
@@ -143,7 +144,7 @@
         this.lastName = this.getUserProfile.userAuth0.family_name;
       }
       if(this.getUserProfile.profileIsCompleted) {
-        this.birthday = this.getUserProfile.mangoPayUser.Birthday.toString()
+        this.birthday = new Date(this.getUserProfile.mangoPayUser.Birthday * 1000 )
       }
 
       this.$v.$touch();
@@ -168,28 +169,34 @@
         let url = URL.createObjectURL(event.target.files[0])
       },
       getSocialProfiles(identityProvider) {
-        const identities = this.getUserProfile.userAuth0.identities
+        const identities = this.getUserProfile.userAuth0.identities;
         return identities.filter(identity => identity.provider === identityProvider).length > 0 ? 'Verbunden' : '';
       },
       completeUserRegistration() {
         if(this.$v.$invalid) {
           this.$v.$touch();
         } else {
-          this.completeUser({firstName: this.firstName, lastName: this.lastName, birthday: this.birthday})
+          this.completeUser({firstName: this.firstName, lastName: this.lastName, birthday: this.parsedBirthday})
         }
       },
       updateUserProfile() {
         if(this.$v.$invalid) {
           this.$v.$touch();
         } else {
-          this.updateProfile({firstName: this.firstName, lastName: this.lastName, birthday: this.birthday})
+          this.updateProfile({firstName: this.firstName, lastName: this.lastName, birthday: this.parsedBirthday})
         }
       }
     }
   }
 </script>
 
-<style scoped>
+<style>
+  .cell:hover {
+    @apply border-primary !important;
+  }
+  .selected {
+    @apply bg-primary !important;
+  }
   .is-invalid {
     @apply border border-red-500;
   }

@@ -4,7 +4,7 @@
          class="rounded-full cursor-pointer p-2 hover:bg-primary relative">
       <img src="~/assets/notification.png" alt="login symbol">
       <div v-if="getNotifications.length > 0"
-           class="bg-red-500 text-white rounded-full text-xs absolute top-0 right-0 px-1.5"
+           class="bg-red-500 text-white rounded-full text-xs absolute top-0 right-0 px-150"
            style="padding-bottom: 1px">
         {{getNotifications.length}}
       </div>

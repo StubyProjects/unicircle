@@ -20,7 +20,12 @@
         <div>Einloggen</div>
       </a>
     </nav>
-     Icon by <a target="_blank" href="https://icons8.de">Icons8</a>
+
+    <footer class='w-full text-white bg-anthrazit mt-16 border-t border-grey p-4'>
+      generic footer
+      Icon by <a target="_blank" href="https://icons8.de">Icons8</a>
+    </footer>
+
   </div>
 </template>
 
