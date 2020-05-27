@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="relative min-h-screen">
     <TheHeader/>
-    <div @click="closeDropDowns()">
+    <div class="pb-48" @click="closeDropDowns()">
       <nuxt/>
     </div>
     <TheSnackbar/>

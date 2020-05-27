@@ -1,5 +1,11 @@
 <template>
   <div>
+
+    <footer class="w-full absolute bottom-0 text-white bg-anthrazit border-t border-grey p-4">
+      generic footer <br />
+      Icon by <a target="_blank" href="https://icons8.de">Icons8</a>
+    </footer>
+
     <nav v-if="notAtBottomPage" class="bg-white text-xs fixed border-t flex inset-x-0 bottom-0 justify-center pt-4 pb-2 md:hidden">
       <a href="#">
         <div class="mb-1 flex justify-center">
@@ -21,11 +27,6 @@
       </a>
     </nav>
 
-    <footer class='w-full text-white bg-anthrazit mt-16 border-t border-grey p-4'>
-      generic footer
-      Icon by <a target="_blank" href="https://icons8.de">Icons8</a>
-    </footer>
-
   </div>
 </template>
 
@@ -42,11 +43,7 @@
         },
         methods: {
             handleScroll() {
-              if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-                this.notAtBottomPage = !this.notAtBottomPage
-              } else {
-                this.notAtBottomPage = true;
-              }
+              this.notAtBottomPage = (window.innerHeight + window.scrollY) < document.body.offsetHeight;
             },
             login() {
               this.$auth.loginWith('auth0');

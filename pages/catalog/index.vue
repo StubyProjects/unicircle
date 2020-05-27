@@ -1,11 +1,9 @@
 <template>
   <div>
-    <div class="">
       <FilterPanel></FilterPanel>
       <div>
         <shop-panel></shop-panel>
       </div>
-    </div>
   </div>
 </template>
 
