@@ -12,7 +12,8 @@ module.exports = {
       },
       colors: {
         primary: '#21ce99',
-        anthrazit: '#333333'
+        anthrazit: '#333333',
+        footerbg: '#474747'
       }
     }
   },

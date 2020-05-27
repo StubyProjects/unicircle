@@ -1,6 +1,6 @@
 <template>
-  <div v-if="isActive" class="animationFadeIn wrapper fadeInBottom fixed bottom-0 inset-x-0">
-    <div class="message max-w-md rounded mb-5 mx-auto bg-anthrazit flex justify-between">
+  <div v-if="isActive" class="animationFadeIn z-50 wrapper fadeInBottom fixed bottom-0 inset-x-0">
+    <div class="message shadow-xl  max-w-md rounded mb-5 mx-auto bg-anthrazit flex justify-between">
       <h1 class="text-white py-4 px-6">{{getMessage}}</h1>
 
       <h1

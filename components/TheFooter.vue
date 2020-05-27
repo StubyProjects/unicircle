@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <footer class="w-full absolute bottom-0 text-white bg-anthrazit border-t border-grey p-4">
+    <footer class="w-full absolute bottom-0 text-white bg-footerbg border-t border-grey p-4">
       generic footer <br />
       Icon by <a target="_blank" href="https://icons8.de">Icons8</a>
     </footer>
