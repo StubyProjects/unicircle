@@ -5,7 +5,8 @@ export const state = () => ({
       name: 'Einstellungen',
       component: 'Settings'
     }
-    ]
+    ],
+  uploadFiles: [],
 })
 
 export const getters = {
@@ -14,10 +15,19 @@ export const getters = {
   },
   getSettingTabs: state => {
     return state.settingTabs
+  },
+  getUploadFiles: state => {
+    return state.uploadFiles
   }
 }
 
 export const mutations = {
+  DELETE_UPLOAD_FILES(state, index) {
+    state.uploadFiles.splice(index, 1)
+  },
+  UPLOAD_FILES(state, files) {
+    state.uploadFiles = files
+  },
   SET(state, user) {
     state.userprofile = user
   },
@@ -83,5 +93,9 @@ export const actions = {
     await dispatch('notifications/loadNotification', {}, { root: true });
     await this.$auth.fetchUser();
     dispatch('snackbar/setMessage',"Profil vervollständigt", { root: true })
+  },
+
+  async kycEmailChange({state}) {
+    console.log(state.uploadFiles)
   }
 }
